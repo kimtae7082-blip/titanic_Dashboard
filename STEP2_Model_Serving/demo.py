@@ -1,3 +1,4 @@
+"""저장된 두 모델의 예측 비교. 웹 서버 없이 실행합니다."""
 from pathlib import Path
 import sys
 APP = Path(__file__).resolve().parents[1] / 'STEP3_Local_Deploy' / 'titanic_dashboard'
@@ -11,16 +12,8 @@ def analyze(pclass, sex, age, sibsp, parch, fare, embarked):
         outputs.append({'생존 추정': p, '사망 추정': 1-p})
     return tuple(outputs)
 
-def build_demo():
-    import gradio as gr
-    return gr.Interface(fn=analyze,
-        inputs=[gr.Dropdown([1,2,3], value=3, label='객실 등급'), gr.Dropdown(['female','male'],value='female',label='성별'),
-            gr.Number(value=25, minimum=0, maximum=100, label='나이'), gr.Number(value=0,minimum=0,maximum=10,precision=0,label='동승 형제·배우자'),
-            gr.Number(value=0,minimum=0,maximum=10,precision=0,label='동승 부모·자녀'), gr.Number(value=15,minimum=0,maximum=1000,label='운임'),
-            gr.Dropdown(['S','C','Q'],value='S',label='승선 항구')],
-        outputs=[gr.Label(label='로지스틱 회귀'),gr.Label(label='신경망 MLP')],
-        examples=[[3,'female',25,0,0,15,'S'],[1,'male',40,1,0,80,'C']],
-        title='타이타닉 생존 예측 비교',description='학습 모델 두 개의 추정값입니다. 실제 생존 기록이나 확정된 개인의 운명이 아닙니다.')
-
 if __name__ == '__main__':
-    build_demo().launch(server_name='127.0.0.1', server_port=7862, share=False)
+    outputs = analyze(3, 'female', 25, 0, 0, 15, 'S')
+    for title, result in zip(['로지스틱 회귀', '신경망 MLP'], outputs):
+        print(f'{title}: 생존 추정 {result["생존 추정"]:.1%}, 사망 추정 {result["사망 추정"]:.1%}')
+    print('입력값을 바꾸려면 대시보드의 생존 예측 비교 메뉴를 사용하세요.')

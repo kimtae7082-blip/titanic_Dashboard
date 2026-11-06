@@ -2,7 +2,7 @@ import streamlit as st
 from utils.models import predict
 
 st.title('생존 예측 비교')
-st.write('STEP2 Gradio와 같은 함수로 로지스틱 회귀와 MLP 신경망을 비교합니다.')
+st.write('STEP2와 같은 예측 함수로 로지스틱 회귀와 MLP 신경망을 비교합니다.')
 with st.form('survival'):
     a,b=st.columns(2)
     pclass=a.selectbox('객실 등급',[1,2,3],index=2)
