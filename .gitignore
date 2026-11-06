@@ -1,0 +1,22 @@
+# Local Python environments
+.venv/
+venv/
+env/
+# Generated Python and notebook caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+# Local secrets (keep non-secret Streamlit config.toml tracked)
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+# Local logs and editor/OS files
+*.log
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

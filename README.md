@@ -8,7 +8,7 @@
 
 ### 1. 홈 — 승객 데이터에서 생존의 패턴까지
 
-[![타이타닉 대시보드 홈: 메뉴와 기록 인원·생존 기록·자료 내 생존율](./home_colors_preview.png)](./home_colors_preview.png)
+[![타이타닉 대시보드 홈: 메뉴와 기록 인원·생존 기록·자료 내 생존율](./docs/images/home_colors_preview.png)](./docs/images/home_colors_preview.png)
 
 홈 화면은 분석할 자료와 주요 메뉴를 한눈에 보여줍니다. 캡처에는 **기록 인원 891명, 생존 기록 342명, 자료 내 생존율 38.4%**가 표시됩니다. 왼쪽 메뉴에서 데이터 분석, 생존 예측 비교, 비슷한 조건 찾기, 승객 특징 군집, 모델 평가, 분석 Q&A로 이동합니다.
 
@@ -16,7 +16,7 @@
 
 ### 2. Gradio — 같은 조건을 두 모델로 예측
 
-[![Gradio 화면: 승객 조건 입력과 로지스틱 회귀·MLP 신경망 예측 비교](./gradio_preview.png)](./gradio_preview.png)
+[![Gradio 화면: 승객 조건 입력과 로지스틱 회귀·MLP 신경망 예측 비교](./docs/images/gradio_preview.png)](./docs/images/gradio_preview.png)
 
 객실 등급, 성별, 나이, 동승 가족 수, 운임, 승선 항구를 입력하고 **Submit**을 누르면 로지스틱 회귀와 MLP 신경망의 추정 결과를 비교합니다.
 
@@ -24,7 +24,7 @@
 
 ### 3. RAG 챗봇 — 근거를 찾아 답하는 분석 Q&A
 
-[![분석 Q&A 화면: 왼쪽 OpenAI API 키 입력란과 사실표·모델 설명서 선택](./qa_sidebar_preview.png)](./qa_sidebar_preview.png)
+[![분석 Q&A 화면: 왼쪽 OpenAI API 키 입력란과 사실표·모델 설명서 선택](./docs/images/qa_sidebar_preview.png)](./docs/images/qa_sidebar_preview.png)
 
 왼쪽에 **OpenAI API 키**를 입력하고, 본문의 **책장 고르기**에서 답변에 사용할 자료를 선택합니다.
 
@@ -34,6 +34,28 @@
 캡처는 API 키를 입력하기 전 화면으로, ‘예시 질문’과 키 입력 안내가 보입니다. 실제 질문·답변 결과가 찍힌 이미지는 아닙니다. 키를 입력하고 Enter를 누른 뒤 질문하면, 검색한 근거와 함께 답변하고 `[F03]` 같은 근거 ID를 표시하도록 구성했습니다. 자료에 없는 질문에는 ‘제공된 자료로는 확인할 수 없습니다.’라고 답하도록 설정했습니다.
 
 API 키는 공개하지 마세요. API 사용 시 질문과 선택한 근거가 OpenAI로 전송되며 별도 비용이 발생할 수 있습니다.
+
+## 폴더 구성
+
+```text
+titanic_Dashboard/
+├─ STEP1_Model_Training/    # 데이터 분석·모델 학습 노트북
+├─ STEP2_Model_Serving/     # Gradio 예측 화면
+├─ STEP3_Local_Deploy/      # Streamlit 대시보드
+│  └─ titanic_dashboard/
+│     ├─ app.py
+│     ├─ views/            # 페이지별 화면
+│     ├─ utils/            # 분석·예측·RAG 함수
+│     ├─ data/             # 원본·분석 자료
+│     └─ model/            # 저장된 학습 모델
+├─ docs/images/            # README 화면 이미지
+├─ .streamlit/             # 화면 색상 설정
+├─ requirements.txt
+├─ 실행.cmd
+└─ Gradio_실행.cmd
+```
+
+가상환경(`.venv`)과 Python 임시 파일(`__pycache__`, `*.pyc`)은 GitHub 관리 대상에서 제외했습니다. 처음 실행할 때 아래 안내에 따라 가상환경을 생성하세요. 화면 이미지와 설명은 `docs/images/` 경로를 사용합니다.
 
 ## 시작
 이 폴더의 실행.cmd를 더블클릭하세요. 처음에는 전용 환경·패키지 설치와 모델 학습을 수행합니다. 정상 결과는 Streamlit 홈 화면입니다. Gradio_실행.cmd는 별도 Gradio 화면을 엽니다. 서버 창을 닫으면 종료됩니다.
