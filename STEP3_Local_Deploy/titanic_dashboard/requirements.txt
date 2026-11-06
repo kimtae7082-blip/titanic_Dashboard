@@ -1,0 +1,9 @@
+streamlit>=1.50
+pandas
+numpy
+plotly
+scikit-learn
+joblib
+gradio>=5,<7
+langchain-core
+langchain-openai

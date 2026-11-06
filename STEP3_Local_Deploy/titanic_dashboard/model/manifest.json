@@ -1,0 +1,17 @@
+{
+  "python": "3.12.10",
+  "sklearn": "1.6.1",
+  "train_csv_sha256": "7d118fef8b6ccf7f81111877bc388536f7b1e498a655e3d649d19aaa010e9f6f",
+  "selected_by": "training 5-fold CV accuracy",
+  "selected": "forest",
+  "features": [
+    "Pclass",
+    "Sex",
+    "Age",
+    "SibSp",
+    "Parch",
+    "Fare",
+    "Embarked"
+  ],
+  "holdout_rows": 179
+}
